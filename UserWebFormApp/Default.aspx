@@ -68,7 +68,9 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 309px; height: 46px;"></td>
+            <td style="width: 309px; height: 46px;">
+                <asp:Label ID="UserId" runat="server" style="visibility:hidden;"></asp:Label>
+            </td>
             <td colspan="2" style="height: 46px">
                 <asp:Label ID="msg" runat="server" ForeColor="Red"></asp:Label>
             </td>
@@ -77,8 +79,8 @@
             <td style="width: 309px; height: 41px;"></td>
             <td colspan="2" style="height: 41px">
                 <asp:Button ID="Button1" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white;"  BorderStyle="None" Height="41px" OnClick="Button1_Click" Text="Register" Width="152px" />
-                <asp:Button ID="Button2" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(1, 23, 224)); color: white;"  BorderStyle="None" Height="41px" OnClick="Button1_Click" Text="Update" Width="152px" />
-                <asp:Button ID="Button3" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(253, 207, 207), rgb(216, 66, 66)); color: white;"  BorderStyle="None" Height="41px" OnClick="Button1_Click" Text="Delete" Width="152px" />
+                <asp:Button ID="Button2" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(1, 23, 224)); color: white;"  BorderStyle="None" Height="41px" OnClick="Update_Click" Text="Update" Width="152px" />
+                <asp:Button ID="Button3" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(253, 207, 207), rgb(216, 66, 66)); color: white;"  BorderStyle="None" Height="41px" OnClick="Delete_Click" Text="Delete" Width="152px" />
             </td>
         </tr>
         <tr>

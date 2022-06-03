@@ -96,6 +96,15 @@ namespace UserWebFormApp
         protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
 
         /// <summary>
+        /// UserId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UserId;
+
+        /// <summary>
         /// msg control.
         /// </summary>
         /// <remarks>

@@ -19,7 +19,7 @@ namespace UserWebFormApp
             }
         }
 
-
+        
         SqlConnection _connection = new SqlConnection("Data Source=.;Initial Catalog=NewDb;Integrated Security=True");
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -34,13 +34,36 @@ namespace UserWebFormApp
             if (firstName != "" && lastName != null && email != null && address != null && state != null && mobile != null && password != null)
             {
                 _connection.Open();
-                SqlCommand query = new SqlCommand("exec stp_AddUser '" + firstName + "','" + "','" + lastName+mobile+ "','" + "','" + email + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "'", _connection);
+                SqlCommand query = new SqlCommand("exec stp_AddUser '" + firstName + "','" + lastName + "','" + mobile +"','" + email + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "'", _connection);
                 query.ExecuteNonQuery();
                 _connection.Close();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Registered')", true);
                 GetuserList();
             }
             else msg.Text = "Above fields are required";
+        }
+        protected void Update_Click(object sender,EventArgs e)
+        {
+            int Id = Convert.ToInt32(UserId.Text);
+            string firstName = FirstName.Text;
+            string lastName = LastName.Text;
+            string email = Email.Text;
+            string address = Address.Text;
+            string state = State.Text;
+            string dateOfBirth = DOB.Text;
+            string mobile = Mobile.Text;
+            string password = Password.Text;
+            if (Id != 0)
+            {
+                _connection.Open();
+                SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName +"','"+ email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "'", _connection);
+                query.ExecuteNonQuery();
+                _connection.Close();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated')", true);
+                GetuserList();
+            }
+            else msg.Text = "Please Select the use to edit";
+                
         }
 
         protected void ConfirmPassword_TextChanged(object sender, EventArgs e)
@@ -68,6 +91,7 @@ namespace UserWebFormApp
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UserId.Text = GridView1.SelectedRow.Cells[1].Text;
             FirstName.Text = GridView1.SelectedRow.Cells[2].Text;
             LastName.Text = GridView1.SelectedRow.Cells[3].Text;
             Email.Text = GridView1.SelectedRow.Cells[4].Text;
@@ -77,7 +101,6 @@ namespace UserWebFormApp
             DOB.Text = GridView1.SelectedRow.Cells[7].Text;
             Address.Text = GridView1.SelectedRow.Cells[8].Text;
             State.Text = GridView1.SelectedRow.Cells[9].Text;
-
         }
     }
 }
