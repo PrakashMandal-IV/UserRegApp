@@ -71,11 +71,12 @@ namespace UserWebFormApp
             FirstName.Text = GridView1.SelectedRow.Cells[2].Text;
             LastName.Text = GridView1.SelectedRow.Cells[3].Text;
             Email.Text = GridView1.SelectedRow.Cells[4].Text;
-            Password.Text = GridView1.SelectedRow.Cells[5].Text;
-            ConfirmPassword.Text = GridView1.SelectedRow.Cells[5].Text;
-            DOB.Text = GridView1.SelectedRow.Cells[6].Text;
-            Address.Text = GridView1.SelectedRow.Cells[7].Text;
-            State.Text = GridView1.SelectedRow.Cells[8].Text;
+            Mobile.Text = GridView1.SelectedRow.Cells[5].Text;
+            Password.Text = GridView1.SelectedRow.Cells[6].Text;
+            ConfirmPassword.Text = GridView1.SelectedRow.Cells[6].Text;
+            DOB.Text = GridView1.SelectedRow.Cells[7].Text;
+            Address.Text = GridView1.SelectedRow.Cells[8].Text;
+            State.Text = GridView1.SelectedRow.Cells[9].Text;
 
         }
     }
