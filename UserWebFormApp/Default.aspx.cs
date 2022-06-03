@@ -116,5 +116,20 @@ namespace UserWebFormApp
             Address.Text = GridView1.SelectedRow.Cells[8].Text;
             State.Text = GridView1.SelectedRow.Cells[9].Text;
         }
+
+        protected void Search_Click(object sender, EventArgs e)
+        {
+            string input = Search.Text;
+            if(input != "" )
+            {
+                _connection.Open();
+                SqlCommand query = new SqlCommand("exec stp_SearchUserByName '" + input + "'", _connection);
+                SqlDataAdapter sd = new SqlDataAdapter(query);
+                DataTable dt = new DataTable();
+                sd.Fill(dt);
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
+        }
     }
 }

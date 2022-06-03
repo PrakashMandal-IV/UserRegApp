@@ -50,14 +50,14 @@
             <td style="width: 309px; height: 39px">
                 Mobile</td>
             <td colspan="2" style="height: 39px">
-                <asp:TextBox ID="Mobile" runat="server" placeholder="xxx-xxx-xxxx" style="border-bottom: 1px solid black ;" BorderStyle="None" Height="20pt" ></asp:TextBox>
+                <asp:TextBox ID="Mobile" runat="server" placeholder="xxx-xxx-xxxx" style="border-bottom: 1px solid black ;" TextMode="Phone" BorderStyle="None" Height="20pt" ></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 46px">
                 Password</td>
             <td colspan="2" style="height: 46px">
-                <asp:TextBox ID="Password" runat="server" placeholder="xxx-xxx-xxxx" style="border-bottom: 1px solid black ;" BorderStyle="None" Height="20pt" Width="207px" ></asp:TextBox>
+                <asp:TextBox ID="Password" runat="server" placeholder="xxx-xxx-xxxx" style="border-bottom: 1px solid black ;" TextMode="Password" BorderStyle="None" Height="20pt" Width="207px" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -88,16 +88,16 @@
             <td style="height: 41px; width: 337px;">
                 &nbsp;</td>
             <td style="height: 41px">
-                <asp:TextBox ID="Search" placeholder="Search.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" BorderStyle="None" Height="20pt" TextMode="Password" Width="208px" ></asp:TextBox>
-                <asp:Button ID="Button4" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" />
+                <asp:TextBox ID="Search" placeholder="Search.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
+                <asp:Button ID="Button4" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" OnClick="Search_Click" />
             </td>
         </tr>
         <tr>
             <td colspan="3">
                 <asp:GridView ID="GridView1" CssClass="gridview" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px; margin-top: 29px;" GridLines="none">
                 <AlternatingRowStyle BackColor="#dfdfdf"/>
-                    <HeaderStyle BackColor="Gray" ForeColor="White" Font-Names="Roboto" />
-                    
+                    <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />
+                    <RowStyle Width="40pt"  />
 
                 </asp:GridView>
             </td>
