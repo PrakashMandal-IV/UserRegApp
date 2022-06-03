@@ -11,12 +11,12 @@
         <tr>
             <td style="width: 309px; height: 47px">
                 Name</td>
-            <td style="width: 170px; height: 47px">
+            <td style="width: 337px; height: 47px">
                 <asp:TextBox ID="FirstName" runat="server" class="input" style="border-bottom: 1px solid black ;" placeholder="FirstName" BorderStyle="None" Height="20pt" ></asp:TextBox>
+                <asp:TextBox ID="LastName" runat="server" style="border-bottom: 1px solid black; margin-left: 10pt" placeholder="LastName" BorderStyle="None" Height="20pt"></asp:TextBox>
             </td>
             <td style="height: 47px">
-                <asp:TextBox ID="LastName" runat="server" style="border-bottom: 1px solid black ;" placeholder="LastName" BorderStyle="None" Height="20pt"></asp:TextBox>
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
             <td style="width: 309px; height: 40px">
@@ -76,8 +76,8 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 309px; height: 41px;"></td>
-            <td colspan="2" style="height: 41px">
+            <td style="width: 309px; height: 52px;"></td>
+            <td colspan="2" style="height: 52px">
                 <asp:Button ID="Button1" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white;"  BorderStyle="None" Height="41px" OnClick="Button1_Click" Text="Register" Width="152px" />
                 <asp:Button ID="Button2" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(1, 23, 224)); color: white;"  BorderStyle="None" Height="41px" OnClick="Update_Click" Text="Update" Width="152px" />
                 <asp:Button ID="Button3" runat="server" AutoPostBack="false" BackColor="#99CCFF" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(253, 207, 207), rgb(216, 66, 66)); color: white;"  BorderStyle="None" Height="41px" OnClick="Delete_Click" Text="Delete" Width="152px" />
@@ -85,17 +85,19 @@
         </tr>
         <tr>
             <td style="width: 309px; height: 41px;">&nbsp;</td>
-            <td style="height: 41px">
+            <td style="height: 41px; width: 337px;">
                 &nbsp;</td>
             <td style="height: 41px">
-                &nbsp;</td>
+                <asp:TextBox ID="Search" placeholder="Search.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" BorderStyle="None" Height="20pt" TextMode="Password" Width="208px" ></asp:TextBox>
+                <asp:Button ID="Button4" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" />
+            </td>
         </tr>
         <tr>
             <td colspan="3">
-                <asp:GridView ID="GridView1" CssClass="gridview" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px;" GridLines="none">
+                <asp:GridView ID="GridView1" CssClass="gridview" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px; margin-top: 29px;" GridLines="none">
                 <AlternatingRowStyle BackColor="#dfdfdf"/>
                     <HeaderStyle BackColor="Gray" ForeColor="White" Font-Names="Roboto" />
-                    <RowStyle Width="20pt" />
+                    
 
                 </asp:GridView>
             </td>
