@@ -29,7 +29,7 @@
             <td style="width: 309px; height: 46px">
                 Address</td>
             <td colspan="2" style="height: 46px">
-                <asp:TextBox ID="Address" runat="server" style="border-bottom: 1px solid black ;" placeholder="Address.." BorderStyle="None" Height="20pt"></asp:TextBox>
+                <asp:TextBox ID="Address" runat="server" style=" border-bottom: 1px solid black;" placeholder="Address.." BorderStyle="None" Height="20pt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -92,7 +92,11 @@
         </tr>
         <tr>
             <td colspan="3">
-                <asp:GridView ID="GridView1" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px" GridLines="none">
+                <asp:GridView ID="GridView1" CssClass="gridview" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px;" GridLines="none">
+                <AlternatingRowStyle BackColor="#dfdfdf"/>
+                    <HeaderStyle BackColor="Gray" ForeColor="White" Font-Names="Roboto" />
+                    <RowStyle Width="20pt" />
+
                 </asp:GridView>
             </td>
         </tr>
