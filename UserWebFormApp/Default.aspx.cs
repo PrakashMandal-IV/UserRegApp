@@ -65,6 +65,20 @@ namespace UserWebFormApp
             else msg.Text = "Please Select the use to edit";
                 
         }
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            int Id = Convert.ToInt32(UserId.Text);
+            if (Id != 0)
+            {
+                _connection.Open();
+                SqlCommand query = new SqlCommand("exec stp_DeleteUser '" + Id + "'", _connection);
+                query.ExecuteNonQuery();
+                _connection.Close();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('User Deleted Successfully')", true);
+                GetuserList();
+            }
+            else msg.Text = "Please select User";
+        }
 
         protected void ConfirmPassword_TextChanged(object sender, EventArgs e)
         {

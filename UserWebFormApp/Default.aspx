@@ -92,7 +92,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <asp:GridView ID="GridView1" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px">
+                <asp:GridView ID="GridView1" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px" GridLines="none">
                 </asp:GridView>
             </td>
         </tr>
