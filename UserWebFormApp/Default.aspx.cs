@@ -148,6 +148,7 @@ namespace UserWebFormApp
                 SqlDataAdapter sd = new SqlDataAdapter(query);
                 DataTable dt = new DataTable();
                 sd.Fill(dt);
+                dt.Columns.Remove("Password");
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
             }
@@ -225,7 +226,7 @@ namespace UserWebFormApp
             SqlCommand query = new SqlCommand(" exec stp_GetSelectedUserDepartment '" + id + "'", _connection);
             SqlDataAdapter sd = new SqlDataAdapter(query);
             DataTable dt = new DataTable();
-            sd.Fill(dt);
+            sd.Fill(dt); 
             UserDepartmentList.DataSource = dt;
             UserDepartmentList.DataBind();
         }
