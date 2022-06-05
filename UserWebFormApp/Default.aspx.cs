@@ -17,11 +17,24 @@ namespace UserWebFormApp
             if(!IsPostBack)
             {
                 GetuserList();
+                GetDepartmentList();
             }
         }
-
-        
         SqlConnection _connection = new SqlConnection("Data Source=.;Initial Catalog=NewDb;Integrated Security=True");
+        public void GetDepartmentList()
+        {
+            SqlCommand query = new SqlCommand("exec stp_GetAllDepartment", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            DepartmentList.DataSource = dt;
+            DepartmentList.DataBind();
+            DepartmentList.DataTextField = "DepartmentName";
+            DepartmentList.DataValueField = "Id";
+            DepartmentList.DataBind();
+        }
+        
+        
         protected void Button1_Click(object sender, EventArgs e)
         {
             string firstName = FirstName.Text;  
@@ -32,10 +45,11 @@ namespace UserWebFormApp
             string dateOfBirth = DOB.Text;
             string mobile = Mobile.Text;
             string password = Password.Text;
+            int DepartmentId = Convert.ToInt32(DepartmentList.SelectedValue.ToString());
             if (firstName != "" && lastName != null && email != null && address != null && state != null && mobile != null && password != null)
             {
                 _connection.Open();
-                SqlCommand query = new SqlCommand("exec stp_AddUser '" + firstName + "','" + lastName + "','" + mobile +"','" + email + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "'", _connection);
+                SqlCommand query = new SqlCommand("exec stp_AddUser '" + firstName + "','" + lastName + "','" + mobile +"','" + email + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId+"'", _connection);
                 query.ExecuteNonQuery();
                 _connection.Close();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Registered')", true);
@@ -46,19 +60,22 @@ namespace UserWebFormApp
         protected void Update_Click(object sender,EventArgs e)
         {
             
-            string firstName = FirstName.Text;
-            string lastName = LastName.Text;
-            string email = Email.Text;
-            string address = Address.Text;
-            string state = State.Text;
-            string dateOfBirth = DOB.Text;
-            string mobile = Mobile.Text;
-            string password = Password.Text;
+           
+            
             if (UserId.Text != "")
             {
+                string firstName = FirstName.Text;
+                string lastName = LastName.Text;
+                string email = Email.Text;
+                string address = Address.Text;
+                string state = State.Text;
+                string dateOfBirth = DOB.Text;
+                string mobile = Mobile.Text;
+                string password = Password.Text;
+                int DepartmentId = Convert.ToInt32(DepartmentList.SelectedValue.ToString());
                 int Id = Convert.ToInt32(UserId.Text);
                 _connection.Open();
-                SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName +"','"+ email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "'", _connection);
+                SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName +"','"+ email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId + "'", _connection);
                 query.ExecuteNonQuery();
                 _connection.Close();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated')", true);

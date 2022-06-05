@@ -68,6 +68,14 @@
             </td>
         </tr>
         <tr>
+            <td style="width: 309px; height: 40px">
+                Department</td>
+            <td colspan="2" style="height: 40px">
+                <asp:DropDownList ID="DepartmentList" style="border-bottom: 1px solid black ;" TextMode="Phone" BorderStyle="None" Width="150pt" Height="20pt" runat="server">
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
             <td style="width: 309px; height: 46px;">
                 <asp:Label ID="UserId" runat="server" style="visibility:hidden;"></asp:Label>
             </td>
@@ -94,8 +102,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <asp:GridView ID="GridView1" CssClass="gridview" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px; margin-top: 29px;" GridLines="none">
-                <AlternatingRowStyle BackColor="#dfdfdf"/>
+                <asp:GridView ID="GridView1" CssClass="table table-condensed table-responsive table-hover" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="277px" Width="1186px" style="margin-right: 0px; margin-top: 29px;" GridLines="none">
                     <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />
                     <RowStyle Width="40pt"  />
 
