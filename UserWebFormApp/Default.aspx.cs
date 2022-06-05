@@ -28,10 +28,16 @@ namespace UserWebFormApp
             DataTable dt = new DataTable();
             sd.Fill(dt);
             DepartmentList.DataSource = dt;
-            DepartmentList.DataBind();
+            
             DepartmentList.DataTextField = "DepartmentName";
             DepartmentList.DataValueField = "Id";
             DepartmentList.DataBind();
+            // search drop down bind
+            DepartmentListSearch.DataSource = dt;
+            
+            DepartmentListSearch.DataTextField = "DepartmentName";
+            DepartmentListSearch.DataValueField = "Id";
+            DepartmentListSearch.DataBind();
         }
         
         
@@ -174,14 +180,15 @@ namespace UserWebFormApp
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
             }
-        }
-        protected void Search_Click_By_Button(object sender, KeyEventArgs e)
+        }    
+
+        protected void SearchDepartment_Click(object sender, EventArgs e)
         {
-            string input = Search.Text;
-            if (input != "" && e.KeyCode == Keys.Enter)
+           int input = Convert.ToInt32( DepartmentListSearch.SelectedValue.ToString());
+            if (input.ToString() != "" )
             {
                 _connection.Open();
-                SqlCommand query = new SqlCommand("exec stp_SearchUserByName '" + input + "'", _connection);
+                SqlCommand query = new SqlCommand("exec stp_GetUserByDepartment '" + input + "'", _connection);
                 SqlDataAdapter sd = new SqlDataAdapter(query);
                 DataTable dt = new DataTable();
                 sd.Fill(dt);

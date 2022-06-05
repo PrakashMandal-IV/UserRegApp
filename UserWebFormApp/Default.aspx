@@ -99,8 +99,8 @@
         </tr>
         <tr>
             <td style="width: 309px; height: 41px;">
-                <asp:TextBox ID="Search0" placeholder="Search Department.." style="border-bottom: 1px solid black; outline:none; margin-left: 0px;" runat="server" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
-                <asp:Button ID="Button5" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" OnClick="Search_Click" />
+                <asp:DropDownList ID="DepartmentListSearch" style="border-bottom: 1px solid black ;" TextMode="Phone" BorderStyle="None" Width="150pt" Height="20pt" runat="server">
+                </asp:DropDownList>
             </td>
             <td style="height: 41px; width: 337px;">
                 &nbsp;</td>
