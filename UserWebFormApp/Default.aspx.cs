@@ -27,14 +27,12 @@ namespace UserWebFormApp
             SqlDataAdapter sd = new SqlDataAdapter(query);
             DataTable dt = new DataTable();
             sd.Fill(dt);
-            DepartmentList.DataSource = dt;
-            
+            DepartmentList.DataSource = dt;      
             DepartmentList.DataTextField = "DepartmentName";
             DepartmentList.DataValueField = "Id";
             DepartmentList.DataBind();
             // search drop down bind
-            DepartmentListSearch.DataSource = dt;
-            
+            DepartmentListSearch.DataSource = dt;        
             DepartmentListSearch.DataTextField = "DepartmentName";
             DepartmentListSearch.DataValueField = "Id";
             DepartmentListSearch.DataBind();
@@ -64,10 +62,7 @@ namespace UserWebFormApp
             else msg.Text = "Above fields are required";
         }
         protected void Update_Click(object sender,EventArgs e)
-        {
-            
-           
-            
+        {     
             if (UserId.Text != "")
             {
                 string firstName = FirstName.Text;
@@ -94,6 +89,7 @@ namespace UserWebFormApp
                     _connection.Close();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated')", true);
                     GetuserList();
+                    GetUserDepartmentList(Id);
                 }
                 else msg.Text = "User is already in selected department";
             }
@@ -134,8 +130,7 @@ namespace UserWebFormApp
             DataTable dt = new DataTable();
             sd.Fill(dt);
             dt.Columns.Remove("Password");
-
-            GridView1.DataSource = dt;
+            GridView1.DataSource = dt;        
             GridView1.DataBind();
             
             
@@ -162,8 +157,6 @@ namespace UserWebFormApp
             SqlDataAdapter sd = new SqlDataAdapter(query);
             DataTable dt = new DataTable();
             sd.Fill(dt);
-            
-
             UserDepartmentList.DataSource = dt;
             UserDepartmentList.DataBind();
         }
@@ -195,6 +188,22 @@ namespace UserWebFormApp
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
             }
+        }
+
+        protected void Clear_Click(object sender, EventArgs e)
+        {
+            UserId.Text = "";
+            FirstName.Text = "";
+            LastName.Text = "";
+            Email.Text = "";
+            Mobile.Text = "";
+
+            DOB.Text = "";
+            Address.Text = "";
+            State.Text = "";
+            UserId.Text = "";
+            GetuserList();
+            DepartmentList.Dispose();
         }
     }
 }
