@@ -98,11 +98,14 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 309px; height: 41px;">&nbsp;</td>
+            <td style="width: 309px; height: 41px;">
+                <asp:TextBox ID="Search0" placeholder="Search Department.." style="border-bottom: 1px solid black; outline:none; margin-left: 0px;" runat="server" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
+                <asp:Button ID="Button5" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" OnClick="Search_Click" />
+            </td>
             <td style="height: 41px; width: 337px;">
                 &nbsp;</td>
             <td style="height: 41px">
-                <asp:TextBox ID="Search" placeholder="Search.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" OnKeyDown="Search_Click_By_Button" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
+                <asp:TextBox ID="Search" placeholder="Search User.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
                 <asp:Button ID="Button4" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" OnClick="Search_Click" />
             </td>
         </tr>
