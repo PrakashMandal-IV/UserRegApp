@@ -23,24 +23,7 @@ namespace UserWebFormApp
             }
         }
         
-        public void GetDepartmentList()
-        {
-            SqlCommand query = new SqlCommand("exec stp_GetAllDepartment", _connection);
-            SqlDataAdapter sd = new SqlDataAdapter(query);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            DepartmentList.DataSource = dt;      
-            DepartmentList.DataTextField = "DepartmentName";
-            DepartmentList.DataValueField = "Id";
-            DepartmentList.DataBind();
-            // search drop down bind
-            DepartmentListSearch.DataSource = dt;        
-            DepartmentListSearch.DataTextField = "DepartmentName";
-            DepartmentListSearch.DataValueField = "Id";
-            DepartmentListSearch.DataBind();
-        }
-        
-        
+        //Button Click Evenet to Add New User
         protected void Button1_Click(object sender, EventArgs e)
         {
             string firstName = FirstName.Text;  
@@ -63,6 +46,8 @@ namespace UserWebFormApp
             }
             else msg.Text = "Above fields are required";
         }
+
+        //Click event to Update Existing User
         protected void Update_Click(object sender,EventArgs e)
         {     
             if (UserId.Text != "")
@@ -98,6 +83,8 @@ namespace UserWebFormApp
             else msg.Text = "Please Select the use to edit";
                 
         }
+
+        //Event to Delete Existing User
         protected void Delete_Click(object sender, EventArgs e)
         {
             
@@ -114,30 +101,7 @@ namespace UserWebFormApp
             else msg.Text = "Please select User";
         }
 
-        protected void ConfirmPassword_TextChanged(object sender, EventArgs e)
-        {
-            string pass = Password.Text;
-            string confpass = ConfirmPassword.Text;
-            if (pass != confpass)
-            {
-                msg.Text = "Password not matching";
-            }
-            else msg.Text = "";
-        }
-
-        public void GetuserList()
-        {
-            SqlCommand query = new SqlCommand(" exec stp_GetAllUserWithDepartment", _connection);
-            SqlDataAdapter sd = new SqlDataAdapter(query);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            dt.Columns.Remove("Password");
-            GridView1.DataSource = dt;        
-            GridView1.DataBind();
-            
-            
-        }
-
+        //Event to select user from data grid
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UserId.Text = GridView1.SelectedRow.Cells[1].Text;
@@ -152,16 +116,8 @@ namespace UserWebFormApp
             GetUserDepartmentList(Convert.ToInt32(GridView1.SelectedRow.Cells[1].Text));
 
         }
-
-        public void GetUserDepartmentList(int id)
-        {
-            SqlCommand query = new SqlCommand(" exec stp_GetSelectedUserDepartment '"+id+"'", _connection);
-            SqlDataAdapter sd = new SqlDataAdapter(query);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            UserDepartmentList.DataSource = dt;
-            UserDepartmentList.DataBind();
-        }
+ 
+        //Event to search user by first name
         protected void Search_Click(object sender, EventArgs e)
         {
             string input = Search.Text;
@@ -177,6 +133,7 @@ namespace UserWebFormApp
             }
         }    
 
+        //Event TO search Department
         protected void SearchDepartment_Click(object sender, EventArgs e)
         {
            int input = Convert.ToInt32( DepartmentListSearch.SelectedValue.ToString());
@@ -192,6 +149,7 @@ namespace UserWebFormApp
             }
         }
 
+        //Reset All Button
         protected void Clear_Click(object sender, EventArgs e)
         {
             UserId.Text = "";
@@ -206,6 +164,62 @@ namespace UserWebFormApp
             UserId.Text = "";
             GetuserList();
             DepartmentList.Dispose();
+        }
+
+
+        //Functions 
+
+        // Function to Populate Department dropdown
+        public void GetDepartmentList()
+        {
+            SqlCommand query = new SqlCommand("exec stp_GetAllDepartment", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            DepartmentList.DataSource = dt;
+            DepartmentList.DataTextField = "DepartmentName";
+            DepartmentList.DataValueField = "Id";
+            DepartmentList.DataBind();
+            // search drop down bind
+            DepartmentListSearch.DataSource = dt;
+            DepartmentListSearch.DataTextField = "DepartmentName";
+            DepartmentListSearch.DataValueField = "Id";
+            DepartmentListSearch.DataBind();
+        }
+
+        //Function to check password match
+        protected void ConfirmPassword_TextChanged(object sender, EventArgs e)
+        {
+            string pass = Password.Text;
+            string confpass = ConfirmPassword.Text;
+            if (pass != confpass)
+            {
+                msg.Text = "Password not matching";
+            }
+            else msg.Text = "";
+        }
+
+        //Function to Populate Main data grid
+        public void GetuserList()
+        {
+            SqlCommand query = new SqlCommand(" exec stp_GetAllUserWithDepartment", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dt.Columns.Remove("Password");
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+
+        //Function to Populate Department DataGrid
+        public void GetUserDepartmentList(int id)
+        {
+            SqlCommand query = new SqlCommand(" exec stp_GetSelectedUserDepartment '" + id + "'", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            UserDepartmentList.DataSource = dt;
+            UserDepartmentList.DataBind();
         }
     }
 }
