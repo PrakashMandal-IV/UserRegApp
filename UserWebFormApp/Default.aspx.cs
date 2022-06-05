@@ -35,7 +35,7 @@ namespace UserWebFormApp
             string mobile = Mobile.Text;
             string password = Password.Text;
             int DepartmentId = Convert.ToInt32(DepartmentList.SelectedValue.ToString());
-            if (firstName != "" && lastName != null && email != null && address != null && state != null && mobile != null && password != null)
+            if (firstName != "" && lastName != null && email != null && address != null && state != null && mobile != null && password != null && CheckPassword())
             {    
                 _connection.Open();
                 SqlCommand query = new SqlCommand("exec stp_AddUser '" + firstName + "','" + lastName + "','" + mobile +"','" + email + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId+"'", _connection);
@@ -68,7 +68,7 @@ namespace UserWebFormApp
                 _connection.Open();
                 checkQuery.ExecuteNonQuery();
                 _connection.Close();
-                if (returnParameter.Value.ToString() == "0")
+                if (returnParameter.Value.ToString() == "0" && CheckPassword())
                 {
                     _connection.Open();
                     SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName + "','" + email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId + "'", _connection);
@@ -83,7 +83,11 @@ namespace UserWebFormApp
             else msg.Text = "Please Select the use to edit";
                 
         }
-
+        //Evenet to check password
+        protected void ConfirmPassword_TextChanged(object sender, EventArgs e)
+        {
+            CheckPassword();
+        }
         //Event to Delete Existing User
         protected void Delete_Click(object sender, EventArgs e)
         {
@@ -188,17 +192,21 @@ namespace UserWebFormApp
         }
 
         //Function to check password match
-        protected void ConfirmPassword_TextChanged(object sender, EventArgs e)
+        public bool CheckPassword()
         {
             string pass = Password.Text;
             string confpass = ConfirmPassword.Text;
             if (pass != confpass)
             {
                 msg.Text = "Password not matching";
+                return false;
             }
-            else msg.Text = "";
+            else
+            {
+                msg.Text = "";
+                return true;
+            }
         }
-
         //Function to Populate Main data grid
         public void GetuserList()
         {
