@@ -88,7 +88,7 @@
             <td style="height: 41px; width: 337px;">
                 &nbsp;</td>
             <td style="height: 41px">
-                <asp:TextBox ID="Search" placeholder="Search.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
+                <asp:TextBox ID="Search" placeholder="Search.." style="border-bottom: 1px solid black; outline:none; margin-left: 268px;" runat="server" OnKeyDown="Search_Click_By_Button" BorderStyle="None" Height="20pt" Width="208px" ></asp:TextBox>
                 <asp:Button ID="Button4" style="border:none; width:30pt; height:20pt; "  runat="server" Text="Go" OnClick="Search_Click" />
             </td>
         </tr>

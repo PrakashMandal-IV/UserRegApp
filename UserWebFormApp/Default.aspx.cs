@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace UserWebFormApp
 {
@@ -44,7 +45,7 @@ namespace UserWebFormApp
         }
         protected void Update_Click(object sender,EventArgs e)
         {
-            int Id = Convert.ToInt32(UserId.Text);
+            
             string firstName = FirstName.Text;
             string lastName = LastName.Text;
             string email = Email.Text;
@@ -53,8 +54,9 @@ namespace UserWebFormApp
             string dateOfBirth = DOB.Text;
             string mobile = Mobile.Text;
             string password = Password.Text;
-            if (Id != 0)
+            if (UserId.Text != "")
             {
+                int Id = Convert.ToInt32(UserId.Text);
                 _connection.Open();
                 SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName +"','"+ email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "'", _connection);
                 query.ExecuteNonQuery();
@@ -67,9 +69,10 @@ namespace UserWebFormApp
         }
         protected void Delete_Click(object sender, EventArgs e)
         {
-            int Id = Convert.ToInt32(UserId.Text);
-            if (Id != 0)
+            
+            if (UserId.Text != "")
             {
+                int Id = Convert.ToInt32(UserId.Text);
                 _connection.Open();
                 SqlCommand query = new SqlCommand("exec stp_DeleteUser '" + Id + "'", _connection);
                 query.ExecuteNonQuery();
@@ -121,6 +124,20 @@ namespace UserWebFormApp
         {
             string input = Search.Text;
             if(input != "" )
+            {
+                _connection.Open();
+                SqlCommand query = new SqlCommand("exec stp_SearchUserByName '" + input + "'", _connection);
+                SqlDataAdapter sd = new SqlDataAdapter(query);
+                DataTable dt = new DataTable();
+                sd.Fill(dt);
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
+        }
+        protected void Search_Click_By_Button(object sender, KeyEventArgs e)
+        {
+            string input = Search.Text;
+            if (input != "" && e.KeyCode == Keys.Enter)
             {
                 _connection.Open();
                 SqlCommand query = new SqlCommand("exec stp_SearchUserByName '" + input + "'", _connection);
