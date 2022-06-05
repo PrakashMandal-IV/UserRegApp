@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace UserWebFormApp
 {
     public partial class _Default : Page
     {
+        SqlConnection _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SqlDatabase"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -20,7 +22,7 @@ namespace UserWebFormApp
                 GetDepartmentList();
             }
         }
-        SqlConnection _connection = new SqlConnection("Data Source=.;Initial Catalog=NewDb;Integrated Security=True");
+        
         public void GetDepartmentList()
         {
             SqlCommand query = new SqlCommand("exec stp_GetAllDepartment", _connection);
