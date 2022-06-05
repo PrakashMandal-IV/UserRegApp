@@ -47,7 +47,7 @@ namespace UserWebFormApp
             string password = Password.Text;
             int DepartmentId = Convert.ToInt32(DepartmentList.SelectedValue.ToString());
             if (firstName != "" && lastName != null && email != null && address != null && state != null && mobile != null && password != null)
-            {
+            {    
                 _connection.Open();
                 SqlCommand query = new SqlCommand("exec stp_AddUser '" + firstName + "','" + lastName + "','" + mobile +"','" + email + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId+"'", _connection);
                 query.ExecuteNonQuery();
@@ -74,12 +74,22 @@ namespace UserWebFormApp
                 string password = Password.Text;
                 int DepartmentId = Convert.ToInt32(DepartmentList.SelectedValue.ToString());
                 int Id = Convert.ToInt32(UserId.Text);
+                SqlCommand checkQuery = new SqlCommand("stp_CheckDuplicateRelation '" +Id+"','"+DepartmentId+ "'", _connection);
+                SqlParameter returnParameter = checkQuery.Parameters.Add("RetVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
                 _connection.Open();
-                SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName +"','"+ email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId + "'", _connection);
-                query.ExecuteNonQuery();
+                checkQuery.ExecuteNonQuery();
                 _connection.Close();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated')", true);
-                GetuserList();
+                if (returnParameter.Value.ToString() == "0")
+                {
+                    _connection.Open();
+                    SqlCommand query = new SqlCommand("exec stp_UpdateUser '" + Id + "','" + firstName + "','" + lastName + "','" + email + "','" + mobile + "','" + password + "','" + dateOfBirth + "','" + address + "','" + state + "','" + DepartmentId + "'", _connection);
+                    query.ExecuteNonQuery();
+                    _connection.Close();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated')", true);
+                    GetuserList();
+                }
+                else msg.Text = "User is already in selected department";
             }
             else msg.Text = "Please Select the use to edit";
                 
@@ -109,18 +119,20 @@ namespace UserWebFormApp
                 msg.Text = "Password not matching";
             }
             else msg.Text = "";
-
-
         }
 
         public void GetuserList()
         {
-            SqlCommand query = new SqlCommand(" exec stp_GetAllUser",_connection);
+            SqlCommand query = new SqlCommand(" exec stp_GetAllUserWithDepartment", _connection);
             SqlDataAdapter sd = new SqlDataAdapter(query);
             DataTable dt = new DataTable();
             sd.Fill(dt);
+            dt.Columns.Remove("Password");
+
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            
+            
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,13 +142,25 @@ namespace UserWebFormApp
             LastName.Text = GridView1.SelectedRow.Cells[3].Text;
             Email.Text = GridView1.SelectedRow.Cells[4].Text;
             Mobile.Text = GridView1.SelectedRow.Cells[5].Text;
-            Password.Text = GridView1.SelectedRow.Cells[6].Text;
-            ConfirmPassword.Text = GridView1.SelectedRow.Cells[6].Text;
-            DOB.Text = GridView1.SelectedRow.Cells[7].Text;
-            Address.Text = GridView1.SelectedRow.Cells[8].Text;
-            State.Text = GridView1.SelectedRow.Cells[9].Text;
+            
+            DOB.Text = GridView1.SelectedRow.Cells[6].Text;
+            Address.Text = GridView1.SelectedRow.Cells[7].Text;
+            State.Text = GridView1.SelectedRow.Cells[8].Text;
+            GetUserDepartmentList(Convert.ToInt32(GridView1.SelectedRow.Cells[1].Text));
+
         }
 
+        public void GetUserDepartmentList(int id)
+        {
+            SqlCommand query = new SqlCommand(" exec stp_GetSelectedUserDepartment '"+id+"'", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            
+
+            UserDepartmentList.DataSource = dt;
+            UserDepartmentList.DataBind();
+        }
         protected void Search_Click(object sender, EventArgs e)
         {
             string input = Search.Text;

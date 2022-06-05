@@ -21,56 +21,62 @@
         <tr>
             <td style="width: 309px; height: 40px">
                 Email</td>
-            <td colspan="2" style="height: 40px">
+            <td style="height: 40px">
                 <asp:TextBox ID="Email" runat="server" style="border-bottom: 1px solid black ;" placeholder="Email.." BorderStyle="None" Height="20pt" ></asp:TextBox>
+            </td>
+            <td rowspan="8">
+                <asp:GridView ID="UserDepartmentList" CssClass="table table-condensed table-responsive table-hover" runat="server" Height="325px" Width="151px" BorderStyle="None" style="margin-left: 403px">
+                <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />
+                    <RowStyle Width="40pt"  />
+                    </asp:GridView>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 46px">
                 Address</td>
-            <td colspan="2" style="height: 46px">
+            <td style="height: 46px">
                 <asp:TextBox ID="Address" runat="server" style=" border-bottom: 1px solid black;" placeholder="Address.." BorderStyle="None" Height="20pt"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 38px">
                 State</td>
-            <td colspan="2" style="height: 38px">
+            <td style="height: 38px">
                 <asp:TextBox ID="State" runat="server" style="border-bottom: 1px solid black ;" placeholder="State.." BorderStyle="None" Height="20pt" ></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 45px;">
                 Date of Birth</td>
-            <td colspan="2" style="height: 45px">
+            <td style="height: 45px">
                 <asp:TextBox ID="DOB" runat="server" placeholder="Select Date" style="border-bottom: 1px solid black ;" BorderStyle="None" Height="20pt" TextMode="Date"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 39px">
                 Mobile</td>
-            <td colspan="2" style="height: 39px">
+            <td style="height: 39px">
                 <asp:TextBox ID="Mobile" runat="server" placeholder="xxx-xxx-xxxx" style="border-bottom: 1px solid black ;" TextMode="Phone" BorderStyle="None" Height="20pt" ></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 46px">
                 Password</td>
-            <td colspan="2" style="height: 46px">
+            <td style="height: 46px">
                 <asp:TextBox ID="Password" runat="server" placeholder="xxx-xxx-xxxx" style="border-bottom: 1px solid black ;" TextMode="Password" BorderStyle="None" Height="20pt" Width="207px" ></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 40px">
                 Confirm Password</td>
-            <td colspan="2" style="height: 40px">
+            <td style="height: 40px">
                 <asp:TextBox ID="ConfirmPassword" placeholder="Confirm Password" style="border-bottom: 1px solid black ;" runat="server" BorderStyle="None" Height="20pt" OnTextChanged="ConfirmPassword_TextChanged" TextMode="Password" Width="208px" ></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 309px; height: 40px">
                 Department</td>
-            <td colspan="2" style="height: 40px">
+            <td style="height: 40px">
                 <asp:DropDownList ID="DepartmentList" style="border-bottom: 1px solid black ;" TextMode="Phone" BorderStyle="None" Width="150pt" Height="20pt" runat="server">
                 </asp:DropDownList>
             </td>
