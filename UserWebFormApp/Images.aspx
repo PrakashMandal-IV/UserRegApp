@@ -10,6 +10,7 @@
         </div>
         <asp:Label ID="msg" runat="server" style="padding:20pt; color:red;" Text=""></asp:Label>
         <asp:Button ID="Button1" runat="server" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white; width:100pt" BorderStyle="None" Height="41px" Text="Save" OnClick="Upload_Click" />
-    </div>
+        <asp:Label ID="successMsg" runat="server" style="padding:20pt; font-family:Roboto;" Text=""></asp:Label>
+        </div>
    
 </asp:Content>
