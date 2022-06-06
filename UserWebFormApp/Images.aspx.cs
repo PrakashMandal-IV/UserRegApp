@@ -41,7 +41,7 @@ namespace UserWebFormApp
                     //Check the file type
                     if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".jpeg")
                     {
-                        string filepath = Server.MapPath("/Image/" + date + "/Original/");
+                        string filepath = ("D:/LOCAL_CDN/Image/" + date + "/Original/");
                         //check if directory exist or not
                         if (!Directory.Exists(filepath))
                         {
@@ -64,7 +64,8 @@ namespace UserWebFormApp
 
         public void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            msg.Text = ImageData.SelectedRow.Cells[1].Text;
+
+            getFilePath(Convert.ToInt32(ImageData.SelectedRow.Cells[1].Text));
         }
 
 
@@ -73,25 +74,28 @@ namespace UserWebFormApp
        protected string SaveImageToDB(string path,string filename,string filetype)
         {
             DateTime date =Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            _connection.Open();
+            
             //ADD FILE TO DATABASE
             SqlCommand query = new SqlCommand("exec stp_AddImage '" + filename + "','" + path + "','" + date + "'", _connection);
-            SqlParameter returnParameter = query.Parameters.Add("RetVal", SqlDbType.Int);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
+            _connection.Open();
             query.ExecuteNonQuery();
             _connection.Close();
-            string id = returnParameter.Value.ToString();
+            int id = 0;
             string NameDate = DateTime.Now.ToString("yyyyMMddhhmmss");
             string Newfilename = id+"-" + NameDate + filetype;
             string newPath = path + Newfilename;
+            
             //Update File Path to DATABASE
+         //   UpdatePath(id, newPath);
+            return Newfilename;
+        }
+        protected void UpdatePath(int id,string newPath)
+        {
             _connection.Open();
             SqlCommand UpdateQuery = new SqlCommand("exec stp_UpdateImagePath '" + id + "','" + newPath + "'", _connection);
             UpdateQuery.ExecuteNonQuery();
             _connection.Close();
-            return Newfilename;
         }
-
         protected void GetAllImages()
         {
             SqlCommand query = new SqlCommand(" exec stp_GetAllIamges", _connection);
@@ -106,11 +110,9 @@ namespace UserWebFormApp
         protected void getFilePath(int id)
         {
             SqlCommand query = new SqlCommand(" exec stp_GetFilePathOfSelectedIamge '"+id+"'", _connection);
-            SqlDataAdapter sd = new SqlDataAdapter(query);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            string path = dt.ToString();
-            msg.Text = path;
+            _connection.Open();
+            msg.Text = query.ExecuteScalar().ToString();
+            _connection.Close();
         }
     }
 }
