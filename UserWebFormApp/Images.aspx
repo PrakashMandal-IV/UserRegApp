@@ -26,5 +26,9 @@
              </Columns>
                 </asp:GridView>
             <asp:Image ID="ImageOrg" style="width:auto;height:auto; max-width:400px; max-height:600px; padding:10pt;border:none;" runat="server" />
+            <div class="thumbnailbox" style="display:flex; flex-direction:column; gap:10px;">
+                <p style="font-family:Roboto;text-align:center;font-size:14px;">Thumbnail</p>
+            <asp:Image ID="Thumbnail" style="width:auto;height:auto; max-width:200px; max-height:499px; padding:10pt;border:none;" runat="server" />\
+                </div>
             </div>
 </asp:Content>

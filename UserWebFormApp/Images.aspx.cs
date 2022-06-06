@@ -41,15 +41,16 @@ namespace UserWebFormApp
                     //Check the file type
                     if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".jpeg")
                     {
-                        string filepath = Server.MapPath("/CDN/Image/" + date + "/Original/");
-                        string filepathfordb = "/CDN/Image/" + date + "/Original/";
+                        string filepath = Server.MapPath("\\CDN\\Image\\" + date + "\\Original\\");
+                        string filepathfordb = "\\CDN\\Image\\" + date + "\\Original\\";
                         //check if directory exist or not
                         if (!Directory.Exists(filepath))
                         {
                             Directory.CreateDirectory(filepath);
                         }
-
-                        ImageSelector.SaveAs(filepath + SaveImageToDB(filepathfordb, originalFilenName, fileExtension));
+                        string newFileName = SaveImageToDB(filepathfordb, originalFilenName, fileExtension);
+                        ImageSelector.SaveAs(filepath + newFileName);
+                        ThumbnailGenerateor(filepath, newFileName);
                         successMsg.Text = "Successfully Uploaded !";
                         GetAllImages();
                     }
@@ -107,15 +108,21 @@ namespace UserWebFormApp
             ImageData.DataBind();
         }
 
-
+         
         protected void getFilePath(int id)
         {
             SqlCommand query = new SqlCommand(" exec stp_GetFilePathOfSelectedIamge '"+id+"'", _connection);
             _connection.Open();
             string path = query.ExecuteScalar().ToString();
-            _connection.Close();
-            path.Replace("/", @"\");
+            _connection.Close();   
             ImageOrg.ImageUrl=path;
+            string thumbnailPart = path.Replace("Original", "Thumbnail");
+            Thumbnail.ImageUrl=thumbnailPart;
+        }
+
+        protected void ThumbnailGenerateor(string filepath,string name)
+        {
+             Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);        
         }
     }
 }
