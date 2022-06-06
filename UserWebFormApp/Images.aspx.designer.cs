@@ -24,6 +24,15 @@ namespace UserWebFormApp
         protected global::System.Web.UI.WebControls.FileUpload ImageSelector;
 
         /// <summary>
+        /// Info control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Info;
+
+        /// <summary>
         /// msg control.
         /// </summary>
         /// <remarks>
@@ -49,5 +58,14 @@ namespace UserWebFormApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label successMsg;
+
+        /// <summary>
+        /// ImageData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ImageData;
     }
 }

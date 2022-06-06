@@ -44,6 +44,7 @@ namespace UserWebFormApp
                     }
 
                     ImageSelector.SaveAs(filepath + SaveImageToDB(filepath,originalFilenName,fileExtension));
+                    successMsg.Text = "Successfully Uploaded !";
                 }
                 else msg.Text = "File must be png/jpg/jpeg";
             }
