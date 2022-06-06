@@ -13,7 +13,8 @@
         <asp:Button ID="Button1" runat="server" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white; width:100pt" BorderStyle="None" Height="41px" Text="Save" OnClick="Upload_Click" />
         <asp:Label ID="successMsg" runat="server" style="padding:20pt; font-family:Roboto;" Text=""></asp:Label>
         </div>
-         <asp:GridView ID="ImageData" CssClass="table table-condensed table-responsive table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="16px" Width="1186px" style="margin-right: 0px; margin-top: 29px;" GridLines="none" AllowSorting="True">
+        <div class="Second_Part" style="display:flex;gap:10pt; margin-top:20px;">
+         <asp:GridView ID="ImageData" CssClass="table table-condensed table-responsive table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="16px" Width="509px" style="margin-right: 0px; margin-top: 29px;" GridLines="none" AllowSorting="True">
                     <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />
                    <RowStyle/>
              <Columns>
@@ -24,4 +25,6 @@
                  </asp:TemplateField>
              </Columns>
                 </asp:GridView>
+            <asp:Image ID="ImageOrg" style="width:auto;height:auto; max-width:400px; max-height:600px; padding:10pt;border:none;" runat="server" />
+            </div>
 </asp:Content>

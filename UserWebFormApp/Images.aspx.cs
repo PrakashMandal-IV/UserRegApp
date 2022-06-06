@@ -41,14 +41,15 @@ namespace UserWebFormApp
                     //Check the file type
                     if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".jpeg")
                     {
-                        string filepath = ("D:/LOCAL_CDN/Image/" + date + "/Original/");
+                        string filepath = Server.MapPath("/CDN/Image/" + date + "/Original/");
+                        string filepathfordb = "/CDN/Image/" + date + "/Original/";
                         //check if directory exist or not
                         if (!Directory.Exists(filepath))
                         {
                             Directory.CreateDirectory(filepath);
                         }
 
-                        ImageSelector.SaveAs(filepath + SaveImageToDB(filepath, originalFilenName, fileExtension));
+                        ImageSelector.SaveAs(filepath + SaveImageToDB(filepathfordb, originalFilenName, fileExtension));
                         successMsg.Text = "Successfully Uploaded !";
                         GetAllImages();
                     }
@@ -78,15 +79,15 @@ namespace UserWebFormApp
             //ADD FILE TO DATABASE
             SqlCommand query = new SqlCommand("exec stp_AddImage '" + filename + "','" + path + "','" + date + "'", _connection);
             _connection.Open();
-            query.ExecuteNonQuery();
+           int id= Convert.ToInt32(query.ExecuteScalar().ToString());
             _connection.Close();
-            int id = 0;
+           
             string NameDate = DateTime.Now.ToString("yyyyMMddhhmmss");
             string Newfilename = id+"-" + NameDate + filetype;
             string newPath = path + Newfilename;
             
-            //Update File Path to DATABASE
-         //   UpdatePath(id, newPath);
+           // Update File Path to DATABASE
+            UpdatePath(id, newPath);
             return Newfilename;
         }
         protected void UpdatePath(int id,string newPath)
@@ -111,8 +112,10 @@ namespace UserWebFormApp
         {
             SqlCommand query = new SqlCommand(" exec stp_GetFilePathOfSelectedIamge '"+id+"'", _connection);
             _connection.Open();
-            msg.Text = query.ExecuteScalar().ToString();
+            string path = query.ExecuteScalar().ToString();
             _connection.Close();
+            path.Replace("/", @"\");
+            ImageOrg.ImageUrl=path;
         }
     }
 }
