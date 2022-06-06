@@ -8,9 +8,20 @@
             <p style="text-align:center; margin-top:30%">Choose Image</p> 
             <asp:FileUpload ID="ImageSelector" runat="server" style="margin-left:30pt;"/>      
         </div>
+        <asp:Label ID="Info" runat="server" style="padding:20pt; font-family:Roboto;" Text="File Size Should not exceed 50mb"></asp:Label>
         <asp:Label ID="msg" runat="server" style="padding:20pt; font-size:10px; color:red;" Text=""></asp:Label>
         <asp:Button ID="Button1" runat="server" style="border: none ; border-radius:5px; padding:5pt; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white; width:100pt" BorderStyle="None" Height="41px" Text="Save" OnClick="Upload_Click" />
         <asp:Label ID="successMsg" runat="server" style="padding:20pt; font-family:Roboto;" Text=""></asp:Label>
         </div>
-   
+         <asp:GridView ID="ImageData" CssClass="table table-condensed table-responsive table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="16px" Width="1186px" style="margin-right: 0px; margin-top: 29px;" GridLines="none" AllowSorting="True">
+                    <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />
+                   <RowStyle/>
+             <Columns>
+                 <asp:TemplateField>
+                     <ItemTemplate>
+                         <asp:Button ID="ViewBtn" runat="server" style="border: none ; border-radius:5px; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white; width:100pt" BorderStyle="None" Height="20px" Text="View" Value='<%#Eval("Id") %>' CommandName="Select"  />
+                     </ItemTemplate>
+                 </asp:TemplateField>
+             </Columns>
+                </asp:GridView>
 </asp:Content>

@@ -118,7 +118,6 @@ namespace UserWebFormApp
             Address.Text = GridView1.SelectedRow.Cells[7].Text;
             State.Text = GridView1.SelectedRow.Cells[8].Text;
             GetUserDepartmentList(Convert.ToInt32(GridView1.SelectedRow.Cells[1].Text));
-
         }
  
         //Event to search user by first name

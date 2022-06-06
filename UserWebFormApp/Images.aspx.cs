@@ -16,7 +16,10 @@ namespace UserWebFormApp
         SqlConnection _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SqlDatabase"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                GetAllImages();
+            }
         }
 
         protected void Upload_Click(object sender, EventArgs e)
@@ -24,32 +27,47 @@ namespace UserWebFormApp
             UploadImage();
         }
 
-
+       
         protected void UploadImage()
         {
-            string originalFilenName = Path.GetFileName(ImageSelector.FileName);
-            //Check if the file is selected or not 
-            if (ImageSelector.HasFile)
+            try
             {
-                string fileExtension = Path.GetExtension(ImageSelector.FileName).ToLower();
-                string date = DateTime.Now.ToShortDateString();
-                //Check the file type
-                if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".jpeg")
+                string originalFilenName = Path.GetFileName(ImageSelector.FileName);
+                //Check if the file is selected or not 
+                if (ImageSelector.HasFile)
                 {
-                    string filepath = Server.MapPath("/Image/" + date + "/Original/");
-                    //check if directory exist or not
-                    if(!Directory.Exists(filepath))
+                    string fileExtension = Path.GetExtension(ImageSelector.FileName).ToLower();
+                    string date = DateTime.Now.ToShortDateString();
+                    //Check the file type
+                    if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".jpeg")
                     {
-                        Directory.CreateDirectory(filepath);
-                    }
+                        string filepath = Server.MapPath("/Image/" + date + "/Original/");
+                        //check if directory exist or not
+                        if (!Directory.Exists(filepath))
+                        {
+                            Directory.CreateDirectory(filepath);
+                        }
 
-                    ImageSelector.SaveAs(filepath + SaveImageToDB(filepath,originalFilenName,fileExtension));
-                    successMsg.Text = "Successfully Uploaded !";
+                        ImageSelector.SaveAs(filepath + SaveImageToDB(filepath, originalFilenName, fileExtension));
+                        successMsg.Text = "Successfully Uploaded !";
+                        GetAllImages();
+                    }
+                    else msg.Text = "File must be png/jpg/jpeg";
                 }
-                else msg.Text = "File must be png/jpg/jpeg";
+                else msg.Text = "Please Select a file";
             }
-            else msg.Text = "Please Select a file";
+            catch (Exception ex)
+            {
+                msg.Text = ex.Message;
+            }
         }
+
+        public void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            msg.Text = ImageData.SelectedRow.Cells[1].Text;
+        }
+
+
 
        //Method to store file in Database
        protected string SaveImageToDB(string path,string filename,string filetype)
@@ -74,5 +92,25 @@ namespace UserWebFormApp
             return Newfilename;
         }
 
+        protected void GetAllImages()
+        {
+            SqlCommand query = new SqlCommand(" exec stp_GetAllIamges", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);    
+            ImageData.DataSource = dt;
+            ImageData.DataBind();
+        }
+
+
+        protected void getFilePath(int id)
+        {
+            SqlCommand query = new SqlCommand(" exec stp_GetFilePathOfSelectedIamge '"+id+"'", _connection);
+            SqlDataAdapter sd = new SqlDataAdapter(query);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            string path = dt.ToString();
+            msg.Text = path;
+        }
     }
 }
