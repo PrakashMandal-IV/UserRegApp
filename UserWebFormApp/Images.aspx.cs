@@ -19,10 +19,6 @@ namespace UserWebFormApp
         protected void Upload_Click(object sender, EventArgs e)
         {
             UploadImage();
-
-            string date = DateTime.Now.ToString("yyyy-mm-dd");
-            string filepath = Server.MapPath("/Image/" + date + "/Original/");
-            Directory.CreateDirectory(filepath);
         }
 
 
@@ -49,5 +45,13 @@ namespace UserWebFormApp
             }
             else msg.Text = "Please Select a file";
         }
+
+       //Method to store file in Database
+       protected string SaveImageToDB(string path,string filename)
+        {
+
+            return "null";
+        }
+
     }
 }
