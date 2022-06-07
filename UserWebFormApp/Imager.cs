@@ -96,9 +96,9 @@ namespace UserWebFormApp
         /// <returns>resized image</returns>  
         public static Image Resize(Image image)
         {
-           int newWidth = image.Width/10;
-           int newHeight = image.Height/10;
-            
+            int newWidth = image.Width / 10;
+            int newHeight = image.Height / 10;
+
 
             var res = new Bitmap(newWidth, newHeight);
 
@@ -147,7 +147,7 @@ namespace UserWebFormApp
         }
 
 
-        public static void PerformImageResizeAndPutOnCanvas(string pFilePath, string pFileName,string pOutputFileName)
+        public static void PerformImageResizeAndPutOnCanvas(string pFilePath, string pFileName, string pOutputFileName)
         {
 
             System.Drawing.Image imgBef;

@@ -126,7 +126,6 @@ namespace UserWebFormApp
         protected void ThumbnailGenerateor(string filepath,string name)
         {
              Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);        
-
         }
     }
 }
