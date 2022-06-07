@@ -16,7 +16,9 @@
 # Mono auto generated files
 mono_crash.*
 # Image files
-/UserWebFormApp/Image
+*.png
+*.jpg
+*.jpeg
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

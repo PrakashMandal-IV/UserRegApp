@@ -103,7 +103,8 @@ namespace UserWebFormApp
             SqlCommand query = new SqlCommand(" exec stp_GetAllIamges", _connection);
             SqlDataAdapter sd = new SqlDataAdapter(query);
             DataTable dt = new DataTable();
-            sd.Fill(dt);    
+            sd.Fill(dt);
+            dt.Columns.Remove("FilePath");
             ImageData.DataSource = dt;
             ImageData.DataBind();
         }
@@ -118,6 +119,7 @@ namespace UserWebFormApp
             ImageOrg.ImageUrl=path;
             string thumbnailPart = path.Replace("Original", "Thumbnail");
             Thumbnail.ImageUrl=thumbnailPart;
+           
         }
 
         protected void ThumbnailGenerateor(string filepath,string name)
