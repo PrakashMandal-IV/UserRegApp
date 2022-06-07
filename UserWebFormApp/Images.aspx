@@ -25,9 +25,13 @@
                  </asp:TemplateField>
              </Columns>
                 </asp:GridView>
+<<<<<<< HEAD
             <div style="margin:20pt">
             <asp:Image ID="ImageOrg" style="width:auto; height:auto; max-height:250pt;border:none;border-radius:5px" runat="server" />   
             <asp:Image ID="Thumbnail" style="width:auto;height:auto; max-height:150pt;border:none; margin:10pt; border:1px solid rgb(96, 96, 255);align-self:center; border-radius:5px" runat="server" />
                 </div>
+=======
+            <asp:Image ID="ImageOrg" style="width:auto;height:auto; max-width:400px; max-height:600px; padding:10pt;border:none;" runat="server" />
+>>>>>>> parent of 2fbcdc9 (Add : Thumbnail gen function with add image)
             </div>
 </asp:Content>

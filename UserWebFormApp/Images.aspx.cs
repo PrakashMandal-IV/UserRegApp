@@ -41,16 +41,15 @@ namespace UserWebFormApp
                     //Check the file type
                     if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".jpeg")
                     {
-                        string filepath = Server.MapPath("\\CDN\\Image\\" + date + "\\Original\\");
-                        string filepathfordb = "\\CDN\\Image\\" + date + "\\Original\\";
+                        string filepath = Server.MapPath("/CDN/Image/" + date + "/Original/");
+                        string filepathfordb = "/CDN/Image/" + date + "/Original/";
                         //check if directory exist or not
                         if (!Directory.Exists(filepath))
                         {
                             Directory.CreateDirectory(filepath);
                         }
-                        string newFileName = SaveImageToDB(filepathfordb, originalFilenName, fileExtension);
-                        ImageSelector.SaveAs(filepath + newFileName);
-                        ThumbnailGenerateor(filepath, newFileName);
+
+                        ImageSelector.SaveAs(filepath + SaveImageToDB(filepathfordb, originalFilenName, fileExtension));
                         successMsg.Text = "Successfully Uploaded !";
                         GetAllImages();
                     }
@@ -109,14 +108,16 @@ namespace UserWebFormApp
             ImageData.DataBind();
         }
 
-         
+
         protected void getFilePath(int id)
         {
             SqlCommand query = new SqlCommand(" exec stp_GetFilePathOfSelectedIamge '"+id+"'", _connection);
             _connection.Open();
             string path = query.ExecuteScalar().ToString();
-            _connection.Close();   
+            _connection.Close();
+            path.Replace("/", @"\");
             ImageOrg.ImageUrl=path;
+<<<<<<< HEAD
             string thumbnailPart = path.Replace("Original", "Thumbnail");
             Thumbnail.ImageUrl=thumbnailPart;
            
@@ -125,6 +126,8 @@ namespace UserWebFormApp
         protected void ThumbnailGenerateor(string filepath,string name)
         {
              Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);        
+=======
+>>>>>>> parent of 2fbcdc9 (Add : Thumbnail gen function with add image)
         }
     }
 }
