@@ -1,8 +1,7 @@
-﻿<%@ Page Title="Images" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="UserWebFormApp._Default" %>
+﻿<%@ Page Title="Images" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Images.aspx.cs" Inherits="UserWebFormApp.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-   
-    <div class="container" style="display:flex; flex-direction:column; width:auto; height:auto; align-items:center;" >
+   <div class="container" style="display:flex; flex-direction:column; width:auto; height:auto; align-items:center;" >
          <h1 style="font-size:20px;font-family:Roboto; color:rgb(60, 60, 218); text-align: center; height: 91px; margin-bottom:5pt">Image Section</h1>
         <div class="ImageSelection" style="display:flex; flex-direction:column; justify-items:center; border:1px dashed black; width:200pt; height:200pt; border-radius:10px; object-fit:contain;justify-items:center; align-items:center">
             <p style="text-align:center; margin-top:30%">Choose Image</p> 
@@ -25,13 +24,9 @@
                  </asp:TemplateField>
              </Columns>
                 </asp:GridView>
-<<<<<<< HEAD
             <div style="margin:20pt">
             <asp:Image ID="ImageOrg" style="width:auto; height:auto; max-height:250pt;border:none;border-radius:5px" runat="server" />   
             <asp:Image ID="Thumbnail" style="width:auto;height:auto; max-height:150pt;border:none; margin:10pt; border:1px solid rgb(96, 96, 255);align-self:center; border-radius:5px" runat="server" />
                 </div>
-=======
-            <asp:Image ID="ImageOrg" style="width:auto;height:auto; max-width:400px; max-height:600px; padding:10pt;border:none;" runat="server" />
->>>>>>> parent of 2fbcdc9 (Add : Thumbnail gen function with add image)
             </div>
 </asp:Content>

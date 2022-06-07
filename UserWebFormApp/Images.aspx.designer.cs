@@ -13,8 +13,6 @@ namespace UserWebFormApp
 
     public partial class About
     {
-<<<<<<< HEAD
-=======
 
         /// <summary>
         /// ImageSelector control.
@@ -78,6 +76,14 @@ namespace UserWebFormApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageOrg;
->>>>>>> parent of 2fbcdc9 (Add : Thumbnail gen function with add image)
+
+        /// <summary>
+        /// Thumbnail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Thumbnail;
     }
 }

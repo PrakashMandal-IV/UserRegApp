@@ -117,7 +117,7 @@ namespace UserWebFormApp
             _connection.Close();
             path.Replace("/", @"\");
             ImageOrg.ImageUrl=path;
-<<<<<<< HEAD
+
             string thumbnailPart = path.Replace("Original", "Thumbnail");
             Thumbnail.ImageUrl=thumbnailPart;
            
@@ -126,8 +126,7 @@ namespace UserWebFormApp
         protected void ThumbnailGenerateor(string filepath,string name)
         {
              Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);        
-=======
->>>>>>> parent of 2fbcdc9 (Add : Thumbnail gen function with add image)
+
         }
     }
 }
