@@ -24,8 +24,7 @@ namespace UserWebFormApp
 
         protected void Upload_Click(object sender, EventArgs e)
         {
-            UploadImage();
-            
+            UploadImage();    
         }
 
        
@@ -49,10 +48,11 @@ namespace UserWebFormApp
                         {
                             Directory.CreateDirectory(filepath);
                         }
-
-                        ImageSelector.SaveAs(filepath + SaveImageToDB(filepathfordb, originalFilenName, fileExtension));
+                        string filename = SaveImageToDB(filepathfordb, originalFilenName, fileExtension);
+                        ImageSelector.SaveAs(filepath + filename);
                         successMsg.Text = "Successfully Uploaded !";
                         GetAllImages();
+                        ThumbnailGenerateor(filepath, filename);
                     }
                     else msg.Text = "File must be png/jpg/jpeg";
                 }
@@ -119,7 +119,7 @@ namespace UserWebFormApp
             _connection.Close();
             path.Replace("/", @"\");
             ImageOrg.ImageUrl=path;
-
+            //Get Thumbnail path
             string thumbnailPath = path.Replace("Original", "Thumbnail");
             Thumbnail.ImageUrl=thumbnailPath;
            
@@ -128,7 +128,6 @@ namespace UserWebFormApp
         protected void ThumbnailGenerateor(string filepath,string name)
         {
              Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);
-           
         }
     }
 }

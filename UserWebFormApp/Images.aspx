@@ -13,19 +13,14 @@
         <asp:Label ID="successMsg" runat="server" style="padding:20pt; font-family:Roboto;" Text=""></asp:Label>
         </div>
         <div class="Second_Part" style="display:flex;gap:10pt;">
-         <asp:GridView ID="ImageData" CssClass="table table-condensed table-responsive table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="16px" Width="486px" style="margin-right: 0px; margin-top: 29px;" GridLines="none" AutoGenerateColumns="false" AllowSorting="True">
-                    <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />
-                   <RowStyle/>
-             <Columns>
-                 <asp:BoundField Datafield="Id" HeaderText="Id" />
-                  <asp:BoundField Datafield="FileName" HeaderText="File Name" />
-                 <asp:BoundField Datafield="UploadDate" HeaderText="Upload Date" />
-
+         <asp:GridView ID="ImageData" CssClass="table table-condensed table-responsive table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" Height="16px" Width="486px" style="margin-right: 0px; margin-top: 29px;" GridLines="none" AllowSorting="True">
+                    <HeaderStyle BackColor="black" ForeColor="White" Font-Names="Roboto" Height="30pt" />           
+             <Columns>             
                  <asp:TemplateField>
                      <ItemTemplate>
                          <asp:Button ID="ViewBtn" runat="server" style="border: none ; border-radius:5px; background-image:linear-gradient(to bottom, rgb(133, 133, 190), rgb(96, 96, 255)); color: white; width:100pt" BorderStyle="None" Height="20px" Text="View" Value='<%#Eval("Id") %>' CommandName="Select"  />
                      </ItemTemplate>
-                 </asp:TemplateField>   
+                 </asp:TemplateField>
              </Columns>
                 </asp:GridView>
             <div style="margin:20pt">
