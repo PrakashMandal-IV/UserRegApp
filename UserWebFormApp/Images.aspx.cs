@@ -25,6 +25,7 @@ namespace UserWebFormApp
         protected void Upload_Click(object sender, EventArgs e)
         {
             UploadImage();
+            
         }
 
        
@@ -67,6 +68,7 @@ namespace UserWebFormApp
         {
 
             getFilePath(Convert.ToInt32(ImageData.SelectedRow.Cells[1].Text));
+            
         }
 
 
@@ -118,14 +120,15 @@ namespace UserWebFormApp
             path.Replace("/", @"\");
             ImageOrg.ImageUrl=path;
 
-            string thumbnailPart = path.Replace("Original", "Thumbnail");
-            Thumbnail.ImageUrl=thumbnailPart;
+            string thumbnailPath = path.Replace("Original", "Thumbnail");
+            Thumbnail.ImageUrl=thumbnailPath;
            
         }
 
         protected void ThumbnailGenerateor(string filepath,string name)
         {
-             Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);        
+             Imager.PerformImageResizeAndPutOnCanvas(filepath,name,name);
+           
         }
     }
 }
